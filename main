@@ -1,0 +1,57 @@
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int km, age, typeOfTrip;
+        System.out.println("Lütfen mesafeyi km cinsinden giriniz!");
+        km = scanner.nextInt();
+        System.out.println("Lütfen yaşı giriniz!");
+        /*System.out.println("12 yaşından küçük ise 1 numaralı"); %50 indirim
+        System.out.println("12-24 yaş aralığında ise 2 numaralı"); %10 indirim
+        System.out.println("24-65 yaş aralığında ise 3 numaralı"); normal fiyat
+        System.out.println("65 yaşından büyük ise 4 numaralı");%30 indirim*/
+        age = scanner.nextInt();
+        double total = km * 0.10;
+        System.out.println("Sadece GİDİŞ için 1 yazınız");
+        System.out.println("Sadece GİDİŞ-DÖNÜŞ için 2 yazınız");
+        typeOfTrip = scanner.nextInt();
+
+        if ((age < 0) || (km < 0) || (typeOfTrip != 1) || (typeOfTrip != 2)) {
+            System.out.println("Lütfen geçerli bir seçim yapınız.");
+        } else {
+            if (age < 12) {
+                age = 1;
+            }
+            if (age > 12 && age <= 24) {
+                age = 2;
+            }
+            if (age > 24 && age < 65) {
+                age = 3;
+
+            } else {
+                age = 4;
+            }
+        }
+        switch (age) {
+            case 1:
+                System.out.println("Bilet fiyatınız\t: " + (total * 0.5));
+                break;
+            case 2:
+                System.out.println("Bilet fiyatınız\t: " + (total * 0.9));
+            case 3:
+                if (typeOfTrip == 2) {
+                    System.out.println("Bilet fiyatınız\t: " + (total * 0.8));
+                } else {
+                    System.out.println("Bilet fiyatınız\t: " + total);
+                }
+            case 4:
+                System.out.println("Bilet fiyatınız\t: " + (total * 0.7));
+            default:
+                System.out.println("geçerli seçim yapılmadı");
+        }
+
+
+    }
+}
